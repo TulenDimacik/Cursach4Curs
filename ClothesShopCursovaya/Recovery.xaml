@@ -1,0 +1,40 @@
+﻿<Page x:Class="ClothesShopCursovaya.Recovery"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClothesShopCursovaya"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+       Title="Recovery" Height="1080" Width="1920">
+    <Grid Style="{StaticResource GridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="1.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.005*"></ColumnDefinition>
+            <ColumnDefinition Width="0.09*"></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <!--<Image Source="Images/reset.png" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" Margin="0 50 350 50"/>-->
+        <Label Foreground="White" FontWeight="ExtraBold" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Margin="0 0 0 0" Content="Восстановление пароля" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="58"/>
+        <Label Foreground="White" Name="lab" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="3" Margin="0 0 0 0" Content="Почта" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <Button Style="{StaticResource ButtonStyle}" Click="btnDown_Click" Name="btnSendCode" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="6" Content="Отправить код"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+        <Button Style="{StaticResource ButtonStyle}" Click="btnDown_Click" Visibility="Hidden" Name="btnConfirm" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="6"  Content="Подтвердить"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+        <Button Style="{StaticResource ButtonStyle}" Click="btnDown_Click" Name="btnBack" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1"  Content="Назад"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+        <TextBox Style="{StaticResource TextBoxStyle}" MaxLength="50" Name="Mail" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4"   HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="25"/>
+        <TextBox Style="{StaticResource TextBoxStyle}" Visibility="Hidden" MaxLength="20" Name="Code" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="25"/>
+    </Grid>
+</Page>
