@@ -43,6 +43,8 @@ namespace ClothesShopCursovaya
             cbSize.DisplayMemberPath = "size_name";
             cbSize.SelectedValuePath = "id_size";
             cbSize.ItemsSource = dataTable.DefaultView;
+            dataTable = new SD.DataTable();
+            adapter.Fill(dataTable);
             cbFilter.DisplayMemberPath = "size_name";
             cbFilter.SelectedValuePath = "id_size";
             dataTable.Rows.Add(8);

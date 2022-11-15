@@ -61,26 +61,33 @@ namespace ClothesShopCursovaya
                     {
                         command = new NpgsqlCommand($@"select client_email from Client where ID_Client = {id_Client}", connectionString);
                         MailAddress to = new MailAddress(command.ExecuteScalar().ToString());
-                        command = new NpgsqlCommand($@"call Order_Update({id_Order},'{Address.Text}','{DateTime.Now.AddDays(3).ToString("dd-MM-yyyy")}',false,true,null,{id_Client})", connectionString);
-                        command.ExecuteNonQuery();
                         MailAddress from = new MailAddress("isip_d.a.gordyushin@mpt.ru", "Магазин одежды");
                         MailMessage m = new MailMessage(from, to);
                         m.Subject = $"Заказ №{id_Order}";
-                        m.IsBodyHtml = true;
+                        m.IsBodyHtml = true;                        
                         command = new NpgsqlCommand($@"select client_name from Client where ID_Client = {id_Client}", connectionString);
-
-                        m.Body += $"Спасибо за ваш заказ,<b>{command.ExecuteScalar()}</b>!<br>\n";
-                        for (int i = 0; i<lbDB.Items.Count;i++)
+                        m.Body += $"Спасибо за ваш заказ,<b>{command.ExecuteScalar()}</b>!<br>";
+                        m.Body += $"<p style=\"color:red\">Письмо носит информационный характер и не является подтверждением заказа. В ближайшее время с Вами свяжется наш оператор для подтверждения.</p><br>";
+                        m.Body += $"<table><tr><td><b>Товар</b></td><td style=\"padding-left: 25px\"><b>Количество</b></td> <td style=\"padding-left: 25px\"><b>Цена</b></td> </tr>";
+                        command = new NpgsqlCommand($@"select  product_name, size_name ,Price,products_count from Ordered_products join Product on Product_ID = ID_Product join Size on Product.Size_ID = Size.ID_size join Orderr on Order_ID = ID_Order where Order_ID = {id_Order} and Payment = false", connectionString);
+                        NpgsqlDataReader dataReader = null;
+                        dataReader = command.ExecuteReader();
+                        while (dataReader.Read())
                         {
-                            m.Body += lbDB.Items[i] + "<br>";
+                            m.Body += $" <tr><td style=\"color:darkorchid\">{dataReader[$@"product_name"].ToString()+" "+dataReader[$@"size_name"].ToString()}</td>";
+                            m.Body += $" <td style=\" text-align: center\">{dataReader[$@"products_count"]}</td>";
+                            m.Body += $" <td style=\" text-align: right\">{dataReader[$@"Price"]} ₽</td>";
                         }
-                        m.Body += $"Количество товаров: {TotalCount.Text} <br>";
-                        m.Body += $"Сумма заказа: {TotalPrice.Text} <br>";
+                        dataReader.Close();
+                        m.Body += $"</table>";
+                        m.Body += $"Сумма заказа: {TotalPrice.Text}₽<br>";
                         m.Body += $"Адрес доставки: {Address.Text} <br>";
-                        m.Body += $"Ожидайте доставку <b>{DateTime.Now.AddDays(3).ToString("dd-MM-yyyy")}</b>";
+                        m.Body += $"Дата доставки: <b>{DateTime.Now.AddDays(3).ToString("dd-MM-yyyy")}</b> <br>";
                         SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                         smtp.Credentials = new NetworkCredential("isip_d.a.gordyushin@mpt.ru", "Go13rd09");
                         smtp.EnableSsl = true;
+                        command = new NpgsqlCommand($@"call Order_Update({id_Order},'{Address.Text}','{DateTime.Now.AddDays(3).ToString("dd-MM-yyyy")}',false,true,null,{id_Client})", connectionString);
+                        command.ExecuteNonQuery();
                         smtp.Send(m);
                         MessageBox.Show("Заказ успешно оформлен!\nПроверьте почту.", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -121,7 +128,7 @@ namespace ClothesShopCursovaya
             lbDB.Items.Clear();
             count = 0;
             Total_Price = 0;
-            command = new NpgsqlCommand($@"select concat (products_count,' ',product_name,' ',size_name,' ',Price,'₽'),products_count,Price from Ordered_products join Product on Product_ID = ID_Product join Size on Product.Size_ID = Size.ID_size join Orderr on Order_ID = ID_Order where Order_ID = {id_Order} and Payment = false", connectionString);
+            command = new NpgsqlCommand($@"select concat (product_name,' ',size_name,' ',Price,'₽',' ',products_count,'шт.'),products_count,Price from Ordered_products join Product on Product_ID = ID_Product join Size on Product.Size_ID = Size.ID_size join Orderr on Order_ID = ID_Order where Order_ID = {id_Order} and Payment = false", connectionString);
             NpgsqlDataReader dataReader = null;
             dataReader = command.ExecuteReader();
             while (dataReader.Read())

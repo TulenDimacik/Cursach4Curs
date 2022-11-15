@@ -27,6 +27,7 @@
 
 
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.01*"></ColumnDefinition>
                 <ColumnDefinition Width="0.15*"></ColumnDefinition>
@@ -42,7 +43,7 @@
                 <ColumnDefinition Width="0.01*"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <Label Foreground="White" FontWeight="ExtraBold" Content="Курьеры" Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="80"/>
+            <Label Foreground="White" FontWeight="ExtraBold" Content="Доставки" Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="80"/>
             <Label Foreground="White" Content="Курьер"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="26"/>
             <ComboBox Name="cbWarehouse" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  MaxDropDownHeight="65">
                 <ComboBox.Resources>
@@ -52,10 +53,21 @@
                     </Style>
                 </ComboBox.Resources>
             </ComboBox>
-            <Button Style="{StaticResource ButtonStyle}" Name="btnAdd" Content="Добавить" Grid.Column="8" Grid.ColumnSpan="1" Grid.Row="7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Click="btnDown_Click"/>
             <Button Style="{StaticResource ButtonStyle}" Name="btnChange" Content="Изменить" Grid.Column="10" Grid.ColumnSpan="1" Grid.Row="7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Click="btnDown_Click"/>
-            <Button Style="{StaticResource ButtonStyle}" Name="btnDelete" Content="Удалить" Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="7"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Click="btnDown_Click"/>
-            <DataGrid  CanUserResizeColumns="True" Name="dg" Grid.Column="0" Grid.ColumnSpan="12" Grid.Row="9" Grid.RowSpan="5" IsReadOnly="True" SelectionChanged="dg_SelectionChanged" />
+            <DataGrid  CanUserResizeColumns="True" Name="dg" Grid.Column="0" Grid.ColumnSpan="12" Grid.Row="9" Grid.RowSpan="5" IsReadOnly="True"/>
+            <Menu Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Background="Transparent">
+                <MenuItem  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="44" Width="57" >
+                    <MenuItem.Icon>
+                        <Image Source="/Images/menu.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-4,-35,-38,-34" ></Image>
+                    </MenuItem.Icon>
+                    <MenuItem Style="{StaticResource MenuItemStyle}"  Name="btnBack" Click="btnDown_Click"  Header="Назад">
+                        <MenuItem.Icon>
+                            <Image Source="/Images/back.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"></Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+            </Menu>
         </Grid>
     </Grid>
 </Page>

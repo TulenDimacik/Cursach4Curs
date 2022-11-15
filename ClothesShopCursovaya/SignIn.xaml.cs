@@ -81,7 +81,7 @@ namespace ClothesShopCursovaya
                                 break;
 
                             case "Доставщик":
-
+                                auth.MainFrame.NavigationService.Navigate(new CourierPage(ID_Employee));
                                 break;
 
                             case "Менеджер по закупкам":

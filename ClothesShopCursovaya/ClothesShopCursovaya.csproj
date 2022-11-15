@@ -128,6 +128,9 @@
     <Compile Include="Contracts.xaml.cs">
       <DependentUpon>Contracts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CourierPage.xaml.cs">
+      <DependentUpon>CourierPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\Helper.cs" />
     <Compile Include="Graph.xaml.cs">
       <DependentUpon>Graph.xaml</DependentUpon>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Contracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CourierPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

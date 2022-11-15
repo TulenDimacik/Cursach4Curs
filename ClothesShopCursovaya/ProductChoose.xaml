@@ -48,9 +48,6 @@
         <Button Name="Sort" Background="Transparent" BorderBrush="Transparent" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="4" Margin="17,9,15,0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Click="btnDown_Click">
             <Image Name="sortimg" Source="Images/sort2.png" Width="47"/>
         </Button>
-        <Button Style="{StaticResource ButtonStyle}" Name="btnBack" Content="Назад" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Click="btnDown_Click"/>
-        <Button Style="{StaticResource ButtonStyle}" Name="btnOrderedProducts" Content="Корзина" Grid.Column="7" Grid.ColumnSpan="1" Margin="10 0 0 0" Grid.Row="1"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Click="btnDown_Click"/>
-        <Button Style="{StaticResource ButtonStyle}" Name="btnProfile" Content="Профиль" Grid.Column="6" Margin="0 0 10 0" Grid.ColumnSpan="1" Grid.Row="1"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Click="btnDown_Click"/>
         <Image Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="3" Grid.RowSpan="1"  Source="Images/search.png" />
         <TextBox Style="{StaticResource TextBoxStyle}" Name="Search" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="1" Margin=" 0 0 0 10"  VerticalContentAlignment="Center"  FontSize="25" TextChanged="Search_TextChanged"/>
         <ListBox Foreground="White" Background="#81205A" BorderBrush="Black" BorderThickness="2" Name="lbDB" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="12" Margin=" 0 0 0 0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" SelectionChanged="btnDown_Click" />
@@ -72,6 +69,27 @@
         <TextBox Style="{StaticResource TextBoxStyle}" MaxLength="3" PreviewTextInput="tbCount_PreviewTextInput" Visibility="Hidden" Name="tbCount" Grid.Column="6" Grid.ColumnSpan="1" Grid.Row="15" Grid.RowSpan="1" Margin=" 0 0 0 0"  FontSize="25"/>
         
         <Button Style="{StaticResource ButtonStyle}" Name="btnAddProduct" Content="В корзину" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Click="btnDown_Click"/>
-
+        <Menu Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Background="Transparent">
+            <MenuItem  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="44" Width="57" >
+                <MenuItem.Icon>
+                    <Image Source="/Images/menu.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-4,-35,-38,-34" ></Image>
+                </MenuItem.Icon>
+                <MenuItem Style="{StaticResource MenuItemStyle}"  Name="btnBack" Click="btnDown_Click"  Header="Назад">
+                    <MenuItem.Icon>
+                        <Image Source="/Images/back.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnProfile" Click="btnDown_Click" Header="Профиль">
+                    <MenuItem.Icon>
+                        <Image Source="/Images/profile.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"  ></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnOrderedProducts" Click="btnDown_Click" Header="Корзина">
+                    <MenuItem.Icon>
+                        <Image Source="/Images/export.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"   ></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Page>
