@@ -96,3 +96,5 @@ D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\ChooseCourier.g.cs
 D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\ChooseCourier.baml
 D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\CourierPage.g.cs
 D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\CourierPage.baml
+D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\AdminPage.g.cs
+D:\C#\ClothesShopCursovaya\ClothesShopCursovaya\obj\Debug\AdminPage.baml

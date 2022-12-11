@@ -158,7 +158,7 @@ namespace ClothesShopCursovaya
             lbDB.Items.Clear();
             tbCount.Visibility = tbName.Visibility = tbColor.Visibility = tbMaterial.Visibility = tbSize.Visibility = tbType.Visibility =
                   tbPrice.Visibility = lbName.Visibility = lbColor.Visibility = lbMaterial.Visibility = lbSize.Visibility = lbType.Visibility =
-                 lbPrice.Visibility = lbCount.Visibility = Visibility.Hidden;
+                     lbPrice.Visibility = lbCount.Visibility = Visibility.Hidden;
             command = new NpgsqlCommand($@"select concat (product_name,' ',size_name,' ',Price,'₽') from Product  join Size on Size_ID = ID_size where product_name like '%{Search.Text}%'  or size_name like '%{Search.Text}%'", connectionString);
             NpgsqlDataReader dataReader = null;
             dataReader = command.ExecuteReader();

@@ -61,8 +61,7 @@ namespace ClothesShopCursovaya
                 {
                     if (helper.IsNull(tbName.Text) && helper.IsNull(Address.Text))
                     {
-                        command = new NpgsqlCommand($@"call Supplier_Insert('{tbName.Text}','{Address.Text}')", connectionString);
-                        command.ExecuteNonQuery();
+                       new NpgsqlCommand($@"call Supplier_Insert('{tbName.Text}','{Address.Text}')", connectionString).ExecuteNonQuery();
                     }
                     else
                         MessageBox.Show("Заполните данные", "Добавление поставщика", MessageBoxButton.OK, MessageBoxImage.Warning);

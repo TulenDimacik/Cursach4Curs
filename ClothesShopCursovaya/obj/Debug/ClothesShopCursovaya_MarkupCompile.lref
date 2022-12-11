@@ -1,9 +1,13 @@
 ﻿
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\App.xaml;;
+FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\AdminPage.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Authorisation.xaml;;
+FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\ChooseCourier.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Contracts.xaml;;
+FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\CourierPage.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Graph.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Invoice.xaml;;
+FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\OrderedProducts.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\ProductChoose.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Products.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Recovery.xaml;;
@@ -13,7 +17,4 @@ FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\SignIn.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Styles.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Suppliers.xaml;;
 FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\Warehouse.xaml;;
-FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\OrderedProducts.xaml;;
-FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\ChooseCourier.xaml;;
-FD:\C#\ClothesShopCursovaya\ClothesShopCursovaya\CourierPage.xaml;;
 

@@ -50,6 +50,14 @@ namespace ClothesShopCursovaya
             {
                 new ColumnSeries
                 {
+                    Title = "Цена",
+                    Values = new ChartValues<double>(list1)
+                }
+            };
+          /*  SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
                     Title="Заказано",
                     Values = new ChartValues<int>(list2),
                 }
@@ -58,7 +66,7 @@ namespace ClothesShopCursovaya
             {
                 Title = "Цена",
                 Values = new ChartValues<double>(list1)
-            });
+            });*/
 
 
             BarLabels = new string[list.Count];

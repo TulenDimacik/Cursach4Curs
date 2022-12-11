@@ -77,7 +77,7 @@ namespace ClothesShopCursovaya
                         switch (role)
                         {
                             case "Администратор":
-
+                                auth.MainFrame.NavigationService.Navigate(new AdminPage());
                                 break;
 
                             case "Доставщик":

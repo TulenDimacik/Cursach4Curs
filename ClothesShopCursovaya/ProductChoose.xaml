@@ -86,7 +86,7 @@
                 </MenuItem>
                 <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnOrderedProducts" Click="btnDown_Click" Header="Корзина">
                     <MenuItem.Icon>
-                        <Image Source="/Images/export.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"   ></Image>
+                        <Image Source="/Images/cart.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"   ></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

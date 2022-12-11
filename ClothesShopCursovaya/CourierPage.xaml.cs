@@ -26,6 +26,7 @@ namespace ClothesShopCursovaya
         NpgsqlCommand command = new NpgsqlCommand();
         Helper helper = new Helper();
         int id_employee;
+        DateTime date = DateTime.Now;
         public CourierPage(int ID_Employee)
         {
             InitializeComponent();
@@ -37,7 +38,6 @@ namespace ClothesShopCursovaya
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
-           DateTime date = DateTime.Now;
             if (e.Source == btnBack)
                 Application.Current.Windows.OfType<Authorisation>().FirstOrDefault().MainFrame.NavigationService.GoBack();
             if (e.Source == btnAdd)
@@ -74,12 +74,19 @@ namespace ClothesShopCursovaya
         public void Refresh()
         {
             lbDB.Items.Clear();
-            command = new NpgsqlCommand($@"select concat('№ Заказа: ',ID_order,' ',delivery_address,' Доставить: ',Delivery_date),ID_order, delivery_address, Delivery_date, client_email from Orderr join Employee on Employee_ID = ID_Employee join Client on Client_ID = ID_Client where payment = true and delivered = false and Employee_ID = {id_employee} ORDER BY ID_Order ASC", connectionString);
+            command = new NpgsqlCommand($@"select concat('№ Заказа: ',ID_order,' | Адрес: ',delivery_address,' | Доставить: ',Delivery_date),ID_order, delivery_address, Delivery_date, client_email from Orderr join Employee on Employee_ID = ID_Employee join Client on Client_ID = ID_Client where payment = true and delivered = false and Employee_ID = {id_employee} ORDER BY ID_Order ASC", connectionString);
             NpgsqlDataReader dataReader = null;
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                lbDB.Items.Add(dataReader.GetValue(0).ToString());
+                lbDB.Foreground = Brushes.White;
+                if (Convert.ToDateTime( dataReader["delivery_date"])<date)
+                {
+                    lbDB.Foreground = Brushes.Red;
+                    lbDB.Items.Add(dataReader.GetValue(0).ToString() + " | Не доставлено!");
+                }
+                else
+                    lbDB.Items.Add(dataReader.GetValue(0).ToString());
             }
             dataReader.Close();
         }

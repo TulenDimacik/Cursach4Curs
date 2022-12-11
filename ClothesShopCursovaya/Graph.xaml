@@ -6,7 +6,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:ClothesShopCursovaya"
         mc:Ignorable="d"
-          Title="Window1" Height="450" Width="800" d:DataContext="{d:DesignInstance local:Graph}">
+          Title="Поставки" Height="450" Width="800" d:DataContext="{d:DesignInstance local:Graph}">
     <Grid>
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Margin="0,0,-0.4,0">
             <lvc:CartesianChart.AxisX>

@@ -41,6 +41,7 @@ namespace ClothesShopCursovaya
             cbSupplier.SelectedValuePath = "id_supplier";
             cbSupplier.ItemsSource = dataTable1.DefaultView;
             dpConclusion.DisplayDateEnd = DateTime.Now;
+            dpTermination.DisplayDateStart = DateTime.Now.AddDays(1);
             Refresh();
             
         }
