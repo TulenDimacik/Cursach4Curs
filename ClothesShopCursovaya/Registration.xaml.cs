@@ -57,6 +57,12 @@ namespace ClothesShopCursovaya
 
             }
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
+
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {

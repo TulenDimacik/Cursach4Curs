@@ -11,6 +11,11 @@ namespace ClothesShopCursovaya.Extensions
     class Helper
     {
         public string connect = "Host=localhost;Port=5432;Database=ClothesShop;Username=postgres;Password=123";
+        /// <summary>
+        /// Метод шифрования
+        /// </summary>
+        /// <param name="decrypted">Шифруемое значение</param>
+        /// <returns></returns>
         public string Encrypt(string decrypted)
         {
             byte[] data = UTF8Encoding.UTF8.GetBytes(decrypted);
@@ -22,6 +27,11 @@ namespace ClothesShopCursovaya.Extensions
             byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
             return Convert.ToBase64String(result);
         }
+        /// <summary>
+        /// Метод дешифрования
+        /// </summary>
+        /// <param name="encrypted">Дешифруемое значение</param>
+        /// <returns></returns>
         public string Decrypt(string encrypted)
         {
             byte[] data = Convert.FromBase64String(encrypted);
@@ -33,6 +43,11 @@ namespace ClothesShopCursovaya.Extensions
             byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
             return UTF8Encoding.UTF8.GetString(result);
         }
+        /// <summary>
+        /// Проверка почты
+        /// </summary>
+        /// <param name="email">Почта для проверки</param>
+        /// <returns></returns>
 
         public bool IsValidEmail(string email)
         {
@@ -48,6 +63,11 @@ namespace ClothesShopCursovaya.Extensions
             }
 
         }
+        /// <summary>
+        /// Проверка на пустоту
+        /// </summary>
+        /// <param name="text">Проверяемое значение</param>
+        /// <returns></returns>
         public bool IsNull(string text)
         {
             if(text.Replace(" ","")=="")
@@ -57,6 +77,11 @@ namespace ClothesShopCursovaya.Extensions
             }
             return true;
         }
+        /// <summary>
+        /// Проверка валидности пароля
+        /// </summary>
+        /// <param name="pswd">Проверяемое значение</param>
+        /// <returns></returns>
         public bool IsValidPassword(string pswd)
         {
            

@@ -33,6 +33,11 @@ namespace ClothesShopCursovaya
             Random r = new Random();
             rand = r.Next(100000, 999999);
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
@@ -44,23 +49,30 @@ namespace ClothesShopCursovaya
             {
                 if (helper.IsValidEmail(Mail.Text))
                 {
-                    MailAddress from = new MailAddress("isip_d.a.gordyushin@mpt.ru", "Магазин одежды");
-                    MailAddress to = new MailAddress(Mail.Text);
-                    MailMessage m = new MailMessage(from, to);
-                    m.Subject = "Восстановление пароля";
-                    m.IsBodyHtml = false;
-                    m.Body = Convert.ToString(rand);
-                    m.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("isip_d.a.gordyushin@mpt.ru", "Go13rd09");
-                    smtp.EnableSsl = true;
-                    smtp.Send(m);
-                    MessageBox.Show("Код для восстановления пароля был отправлен", "Восстановление пароля", MessageBoxButton.OK, MessageBoxImage.Information);
-                    btnSendCode.Visibility = Visibility.Hidden;
-                    btnConfirm.Visibility = Visibility.Visible;
-                    Code.Visibility = Visibility.Visible;
-                    Mail.Visibility = Visibility.Hidden;
-                    lab.Content = "Код";
+                    try
+                    {
+                        MailAddress from = new MailAddress("isip_d.a.gordyushin@mpt.ru", "Магазин одежды");
+                        MailAddress to = new MailAddress(Mail.Text);
+                        MailMessage m = new MailMessage(from, to);
+                        m.Subject = "Восстановление пароля";
+                        m.IsBodyHtml = false;
+                        m.Body = Convert.ToString(rand);
+                        m.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                        smtp.Credentials = new NetworkCredential("isip_d.a.gordyushin@mpt.ru", "Go13rd09");
+                        smtp.EnableSsl = true;
+                        smtp.Send(m);
+                        MessageBox.Show("Код для восстановления пароля был отправлен", "Восстановление пароля", MessageBoxButton.OK, MessageBoxImage.Information);
+                        btnSendCode.Visibility = Visibility.Hidden;
+                        btnConfirm.Visibility = Visibility.Visible;
+                        Code.Visibility = Visibility.Visible;
+                        Mail.Visibility = Visibility.Hidden;
+                        lab.Content = "Код";
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Неверный формат почты", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 
 

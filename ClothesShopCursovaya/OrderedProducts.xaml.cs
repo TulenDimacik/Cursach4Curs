@@ -47,6 +47,11 @@ namespace ClothesShopCursovaya
                 btnDelete.IsEnabled = false;
             }
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
             if (e.Source == btnBack)
@@ -122,7 +127,9 @@ namespace ClothesShopCursovaya
                 dataReader.Close();
             }
         }
-
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void Refresh()
         {
             lbDB.Items.Clear();

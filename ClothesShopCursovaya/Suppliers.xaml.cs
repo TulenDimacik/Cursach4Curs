@@ -36,6 +36,11 @@ namespace ClothesShopCursovaya
             ID_Employe = id; 
             Refresh();
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
@@ -147,6 +152,9 @@ namespace ClothesShopCursovaya
                 dataReader.Close();
             }
         }
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
 
         public void Refresh()
         {
@@ -162,6 +170,7 @@ namespace ClothesShopCursovaya
             }
             dataReader.Close();
         }
+
         /// <summary>
         /// Метод, который обрабатывает производит поиск данных
         /// </summary>

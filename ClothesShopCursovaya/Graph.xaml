@@ -6,14 +6,14 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:ClothesShopCursovaya"
         mc:Ignorable="d"
-          Title="Поставки" Height="450" Width="800" d:DataContext="{d:DesignInstance local:Graph}">
+          Title="Графики поставок" Icon="/images/logo.ico" Height="450" Width="800" d:DataContext="{d:DesignInstance local:Graph}">
     <Grid>
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Margin="0,0,-0.4,0">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="X" Labels="{Binding BarLabels}"/>
+                <lvc:Axis Title="Название" Labels="{Binding BarLabels}"/>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Y" LabelFormatter="{Binding Formatter}"/>
+                <lvc:Axis Title="Стоимость" LabelFormatter="{Binding Formatter}"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>

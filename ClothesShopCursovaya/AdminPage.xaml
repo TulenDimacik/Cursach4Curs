@@ -99,11 +99,7 @@
                         <Image Source="/Images/supplier.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6" Width="21"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnCSV" Click="btnDown_Click"  Header="Выгрузка">
-                    <MenuItem.Icon>
-                        <Image Source="/Images/contract.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"   ></Image>
-                    </MenuItem.Icon>
-                </MenuItem>
+               
                 <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnCopy" Click="btnDown_Click" Header="Резервная копия">
                     <MenuItem.Icon>
                         <Image Source="/Images/request.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"  ></Image>
@@ -114,11 +110,7 @@
                         <Image Source="/Images/export.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"  ></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnRollBack" Click="btnDown_Click" Header="Откат данных">
-                    <MenuItem.Icon>
-                        <Image Source="/Images/export.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"  ></Image>
-                    </MenuItem.Icon>
-                </MenuItem>
+                
                 <MenuItem Style="{StaticResource MenuItemStyle}" Name="btnCSVV" Click="btnDown_Click" Header="CSV">
                     <MenuItem.Icon>
                         <Image Source="/Images/cart.png" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,-7,-6,-6"  ></Image>

@@ -49,6 +49,11 @@ namespace ClothesShopCursovaya
             cbContract.ItemsSource = dataTable.DefaultView;
             Refresh();
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
@@ -143,7 +148,11 @@ namespace ClothesShopCursovaya
                 finally { Refresh(); }
             }
         }
-
+        /// <summary>
+        /// Метод, который обрабатывает производит поиск данных
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             command = new NpgsqlCommand($"select ID_Request as \"Номер поставки\", Quantity as \"Количество\", Total_price as \"Общая сумма\",  Product_name as \"Товар\", size_name as \"Размер\", Price as \"Цена товара\", ID_Contract as \"Номер контракта\"" +
@@ -152,7 +161,11 @@ namespace ClothesShopCursovaya
             dataTable.Load(command.ExecuteReader());
             dg.ItemsSource = dataTable.DefaultView;
         }
-
+        /// <summary>
+        /// Метод вывода данных в поля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void dg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dg.SelectedItem == null) return;
@@ -167,6 +180,9 @@ namespace ClothesShopCursovaya
         {
             e.Handled = !e.Text.All(helper.Isnum);
         }
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void Refresh()
         {
 

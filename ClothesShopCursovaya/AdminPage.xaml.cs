@@ -4,6 +4,7 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,11 @@ namespace ClothesShopCursovaya
             btnEmployeeRestore.Visibility = Visibility.Hidden;
             Refresh();
         }
-
+        /// <summary>
+        /// Выгрузка в CSV
+        /// </summary>
+        /// <param name="dtDataTable">Данные из Datagrid</param>
+        /// <param name="strFilePath">Путь до файла</param>
         public static void ToCSV( DataTable dtDataTable, string strFilePath)
         {
             StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
@@ -81,7 +86,11 @@ namespace ClothesShopCursovaya
             }
             sw.Close();
         }
-
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView)dg.SelectedItem;
@@ -102,6 +111,30 @@ namespace ClothesShopCursovaya
 
                 MessageBox.Show("Выгрузка в CSV прошла успешно");
 
+            }
+            if(e.Source == btnCopy)
+            {
+                SaveFileDialog dialog = new SaveFileDialog()
+                {
+                    Filter = "BACKUP Files|*.backup*"
+                };
+                dialog.Title = "Save as backup file";
+                if (dialog.ShowDialog() == true)
+                {
+                    Backup(dialog.FileName + ".backup");
+                }
+            }
+            if(e.Source == btnRestore)
+            {
+                OpenFileDialog dialog = new OpenFileDialog()
+                {
+                    Filter = "BACKUP Files|*.backup*"
+                };
+                dialog.Title = "Choose backup file";
+                if (dialog.ShowDialog() == true)
+                {
+                    Restore(dialog.FileName);
+                }
             }
             if (e.Source == btnDeleted)
             {
@@ -182,6 +215,11 @@ namespace ClothesShopCursovaya
                 }
             }
         }
+        /// <summary>
+        /// Метод вывода данных в поля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void dg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -198,6 +236,9 @@ namespace ClothesShopCursovaya
             tbPassword.Text = row["Пароль"].ToString();
             cbPost.Text = row["Должность"].ToString();
         }
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void Refresh()
         {
             command = new NpgsqlCommand($"select ID_Employee as \"Табельный номер\",  Surname as \"Фамилия\",Employee_Name as \"Имя\", patronymic as\"Отчество\", Email as \"Email\", Phone_number as \"Телефон\", Passport_series as \"Серия паспорта\", Passport_number as \"Номер паспорта\", Login as \"Логин\", employee_password as \"Пароль\", Post_name as \"Должность\" FROM Employee  join Post on Post_ID=ID_Post where deleted = false", connectionString);
@@ -213,6 +254,11 @@ namespace ClothesShopCursovaya
             dataTable.Load(command.ExecuteReader());
             dg.ItemsSource = dataTable.DefaultView;
         }
+        /// <summary>
+        /// Метод, который обрабатывает производит поиск данных
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -226,6 +272,95 @@ namespace ClothesShopCursovaya
             dg.ItemsSource = dataTable.DefaultView;
         }
         public NpgsqlConnection connectionString { get; }
+
+        string strPG_dumpPath = "SET PGPASSWORD=123\r\n\r\ncd /D C:\\Program Files\r\n\r\ncd PostgreSQL\r\n\r\ncd 13\r\n\r\ncd bin\r\n\r\n";
+        string strServer = "localhost";
+        string strPort = "5432";
+        string strDatabaseName = "ClothesShop";
+
+        /// <summary>
+        /// Создание бэкапа
+        /// </summary>
+        /// <param name="pathSave">Пусть сохранения</param>
+        public void Backup(string pathSave)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter("DBBackup.bat");
+                // Do not change lines / spaces b/w words.
+                StringBuilder strSB = new StringBuilder(strPG_dumpPath);
+
+                if (strSB.Length != 0)
+                {
+                    //strSB.Append("SET PGPASSWORD=1");
+                    strSB.Append("pg_dump.exe --host " + strServer + " --port " + strPort + " --username postgres --format custom --blobs --verbose --file ");
+                    strSB.Append("\"" + pathSave + "\"");
+                    strSB.Append(" \"" + strDatabaseName + "\"" + "\r\n\r\n");
+                    sw.WriteLine(strSB);
+                    sw.Dispose();
+                    sw.Close();
+                    Process processDB = Process.Start("DBBackup.bat");
+                    MessageBox.Show("Резервная копия успешно сохранена");
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста, укажите место для создания резервной копии");
+                }
+            }
+            catch
+            { }
+        }
+        /// <summary>
+        /// Метод восстановления базы данных
+        /// </summary>
+        /// <param name="pathFile">Путь до бэкапа</param>
+        public void Restore(string pathFile)
+        {
+            strDatabaseName = "ClothesShopRestore";
+            try
+            {
+                try {
+                    new NpgsqlCommand("CREATE DATABASE \"ClothesShopRestore\"",connectionString).ExecuteNonQuery(); }
+                catch
+                {
+                    new NpgsqlCommand("DROP DATABASE \"ClothesShopRestore\"", connectionString).ExecuteNonQuery();
+                    new NpgsqlCommand("CREATE DATABASE \"ClothesShopRestore\"", connectionString).ExecuteNonQuery();
+                }
+
+                if (strDatabaseName != "")
+                {
+                    if (pathFile != "")
+                    {
+                        StreamWriter sw = new StreamWriter("DBRestore.bat");
+                        // Do not change lines / spaces b/w words.
+                        StringBuilder strSB = new StringBuilder(strPG_dumpPath);
+                        if (strSB.Length != 0)
+                        {
+                            strSB.Append("pg_restore.exe --host " + strServer +
+                               " --port " + strPort + " --username postgres --dbname");
+                            strSB.Append(" \"" + strDatabaseName + "\"");
+                            strSB.Append(" --verbose ");
+                            strSB.Append("\"" + pathFile + "\"");
+                            sw.WriteLine(strSB);
+                            sw.Dispose();
+                            sw.Close();
+                            Process processDB = Process.Start("DBRestore.bat");
+                            MessageBox.Show("Успешный backup данных");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, введите путь сохранения, чтобы получить резервную копию");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста введите название базы данных");
+                }
+            }
+            catch
+            { }
+        }
 
     }
 }

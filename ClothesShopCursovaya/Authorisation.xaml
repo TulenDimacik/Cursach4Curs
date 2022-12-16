@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClothesShopCursovaya"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" MinHeight="850" MinWidth="1400" WindowStyle="SingleBorderWindow" WindowState="Maximized" >
+        Title="Магазин одежды" Icon="/images/logo.ico" Height="1080" Width="1920" MinHeight="850" MinWidth="1400" WindowStyle="SingleBorderWindow" WindowState="Maximized" >
     <Grid>
         <Frame x:FieldModifier="public" Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>

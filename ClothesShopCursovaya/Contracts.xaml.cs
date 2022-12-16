@@ -45,6 +45,11 @@ namespace ClothesShopCursovaya
             Refresh();
             
         }
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
@@ -147,6 +152,9 @@ namespace ClothesShopCursovaya
             }
             
         }
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void Refresh()
         {
 
@@ -158,6 +166,11 @@ namespace ClothesShopCursovaya
             dataTable.Load(command.ExecuteReader());
             dg.ItemsSource = dataTable.DefaultView;
         }
+        /// <summary>
+        /// Метод, который обрабатывает производит поиск данных
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -166,7 +179,11 @@ namespace ClothesShopCursovaya
             dataTable.Load(command.ExecuteReader());
             dg.ItemsSource = dataTable.DefaultView;
         }
-
+        /// <summary>
+        /// Метод вывода данных в поля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void dg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dg.SelectedItem == null) return;

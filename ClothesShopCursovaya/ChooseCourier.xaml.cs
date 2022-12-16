@@ -42,7 +42,11 @@ namespace ClothesShopCursovaya
             cbWarehouse.ItemsSource = dataTable.DefaultView;
             Refresh();
         }
-
+        /// <summary>
+        /// Обработчик кнопок 
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView)dg.SelectedItem;
@@ -81,6 +85,9 @@ namespace ClothesShopCursovaya
                 finally { Refresh(); }
             }
         }
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void Refresh()
         {
             command = new NpgsqlCommand($"select ID_order as \"Номер заказа\",delivery_address as \"Адрес доставки\", Delivery_date as \"Дата доставки\",delivered as \"Доставлено\",payment as \"Оплачено\",client_email as \"Почта клиента\", concat(surname,' ',employee_name) as \"Курьер\"" +
